@@ -21,7 +21,7 @@ const Chat = () => {
 
   function connectToWebSocket() {
     // const ws = new WebSocket('ws://localhost:8000'); //connection of a client to webSocketServer created in serverfile
-    const ws = new WebSocket('ws://chatapp-backend-7895.onrender.com');
+    const ws = new WebSocket('ws://https://chatapp-backend-7895.onrender.com');
     setWs(ws);
     ws.addEventListener('message', handleMessage); //  message event gets triggered when webSocketServer sends a message to the active client
     ws.addEventListener('close', () => {
