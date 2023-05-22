@@ -12,10 +12,13 @@ export const UserContextProvider = ({children}) => {
        
    useEffect(() => {
     getUserData().then((response) => {
-        console.log(response.data);
-        setUserName(response.data.userName);
-        setId(response.data.userId);
+        
+            console.log(response.data);
+            setUserName(response.data.userName);
+            setId(response.data.userId);
+          
     })
+    .catch((error) => console.log(error));
    }, []);
 
     return (
