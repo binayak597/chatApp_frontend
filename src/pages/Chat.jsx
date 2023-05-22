@@ -5,9 +5,6 @@ import { getAllUsers, getMessages, logoutUser } from '../utils/handleApi';
 import Logo from '../components/Logo';
 import Contact from '../components/Contact';
 import { convertFileToBase64 } from '../helper/convert';
-import axios from "axios";
-
-axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL;
 
 const Chat = () => {
   const [ws, setWs] = useState(null);
@@ -23,7 +20,8 @@ const Chat = () => {
   }, [selectedUserId]);
 
   function connectToWebSocket() {
-    const ws = new WebSocket('ws://localhost:8000'); //connection of a client to webSocketServer created in serverfile
+    // const ws = new WebSocket('ws://localhost:8000'); //connection of a client to webSocketServer created in serverfile
+    const ws = new WebSocket('ws://chatapp-backend-7895.onrender.com');
     setWs(ws);
     ws.addEventListener('message', handleMessage); //  message event gets triggered when webSocketServer sends a message to the active client
     ws.addEventListener('close', () => {
@@ -79,9 +77,6 @@ const Chat = () => {
         .then(res => {
           setMessages(res.data);
         });
-      // axios.get("/user/messages/" + selectedUserId).then((res) => {
-      //   setMessages(res.data);
-      // });
      } else {
       setNewTextMessage("");
       setMessages(prev => ([...prev, {
